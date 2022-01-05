@@ -1,8 +1,8 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const router = require('./routes')
-require('./database')
+const router = require('./routes/specifications.routes')
+require('./config/database')
 
 app.use(express.json())
 app.use(cors())
