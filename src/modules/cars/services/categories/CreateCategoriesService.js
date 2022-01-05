@@ -1,11 +1,11 @@
 const { v4: uuid } = require('uuid')
-const connection = require('../../../config/database')
+const connection = require('../../../../config/database')
 
-function SpecificationsService(req, res) {
+function CreateCategoriesService(req, res) {
   const id = uuid()
   const { name, description } = req.body
 
-  const sql = 'INSERT INTO specifications(id,name,description) VALUES (?,?,?)'
+  const sql = 'INSERT INTO categories(id,name,description) VALUES (?,?,?)'
   const values = [id, name, description]
 
   connection.query(sql, values, error => {
@@ -23,9 +23,9 @@ function SpecificationsService(req, res) {
 
     return res.status(201).json({
       error: false,
-      result: 'Especificação cadastrada com sucesso!'
+      result: 'Categoria cadastrada com sucesso!'
     })
   })
 }
 
-module.exports = SpecificationsService
+module.exports = CreateCategoriesService

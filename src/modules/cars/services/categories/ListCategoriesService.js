@@ -1,7 +1,7 @@
 const { v4: uuid } = require('uuid')
-const connection = require('../../../config/database')
+const connection = require('../../../../config/database')
 
-function CategoriesService(req, res) {
+function ListCategoriesService(req, res) {
   connection.query('SELECT * FROM categories', (error, results) => {
     if (error) {
       return res.status(400).json({ error: true, result: error })
@@ -11,4 +11,4 @@ function CategoriesService(req, res) {
   })
 }
 
-module.exports = CategoriesService
+module.exports = ListCategoriesService
