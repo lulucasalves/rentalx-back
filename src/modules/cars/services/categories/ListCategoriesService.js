@@ -1,4 +1,3 @@
-const { v4: uuid } = require('uuid')
 const connection = require('../../../../config/database')
 
 function ListCategoriesService(req, res) {
