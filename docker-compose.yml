@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    container_name: rentx
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/usr/app
