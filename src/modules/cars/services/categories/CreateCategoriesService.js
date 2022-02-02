@@ -9,15 +9,7 @@ function CreateCategoriesService(req, res) {
   const values = [id, name, description]
 
   connection.query(sql, values, error => {
-    if (error.errno == 1062) {
-      return res
-        .status(400)
-        .json({ error: true, result: 'Este nome já está cadastrado' })
-    } else if (error.errno == 1048) {
-      return res
-        .status(400)
-        .json({ error: true, result: 'Informações insuficientes' })
-    } else if (error) {
+    if (error) {
       return res.status(400).json({ error: true, result: error })
     }
 

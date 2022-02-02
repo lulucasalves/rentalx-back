@@ -31,11 +31,12 @@ async function ImportCategoriesService(req, res) {
           if (error) {
             console.log(`A categoria ${val.name} não foi cadastrada...`)
           }
+
+          return res.status(201).json({
+            error: false,
+            result: 'Categoria cadastrada com sucesso!'
+          })
         })
-      })
-      return res.status(201).json({
-        error: false,
-        result: 'Categoria cadastrada com sucesso!'
       })
     })
     .on('error', err => {
