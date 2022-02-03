@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  database:
+    image: mysql
+    container_name: database
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - USER_DB=root
+      - SECRET=@Lucas75774
+      - DATABASE=rentalx
+    volumes:
+      - /var/lib/mysql
+    network_mode: host
+  app:
+    build: .
+    image: lulucasalves/rentx
+    container_name: rentx
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/usr/app
+    network_mode: host
+
+
+volumes:
+  pgdata:
+    driver: local
