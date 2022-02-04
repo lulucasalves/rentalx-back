@@ -1,4 +1,4 @@
-const connection = require('../../../../config/database')
+const connection = require('../../database/database')
 
 function ListCategoriesService(req, res) {
   connection.query('SELECT * FROM categories', (error, results) => {
@@ -6,7 +6,7 @@ function ListCategoriesService(req, res) {
       return res.status(400).json({ error: true, result: error })
     }
 
-    res.status(200).json({ error: false, result: results })
+    res.status(200).json({ error: true, result: results })
   })
 }
 

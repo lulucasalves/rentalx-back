@@ -1,7 +1,7 @@
 const fs = require('fs')
 const csvParse = require('csv-parse')
 const { v4: uuid } = require('uuid')
-const connection = require('../../../../config/database')
+const connection = require('../../database/database')
 
 async function ImportCategoriesService(req, res) {
   const { file } = req
@@ -10,8 +10,13 @@ async function ImportCategoriesService(req, res) {
   const categories = []
 
   const parseFile = csvParse()
+
   stream.pipe(parseFile)
+
   parseFile
+    .on('headers', val => {
+      console.log(val)
+    })
     .on('data', async line => {
       const [name, description] = line
       categories.push({
@@ -21,23 +26,20 @@ async function ImportCategoriesService(req, res) {
     })
     .on('end', () => {
       fs.promises.unlink(file.path)
-      categories.map(val => {
+      categories.map(({ name, description }) => {
         const id = uuid()
 
         const sql = 'INSERT INTO categories(id,name,description) VALUES (?,?,?)'
-        const values = [id, val.name, val.description]
+        const values = [id, name, description]
 
         connection.query(sql, values, error => {
           if (error) {
-            console.log(`A categoria ${val.name} não foi cadastrada...`)
+            console.log(`A categoria ${name} não foi cadastrada...`)
           }
-
-          return res.status(201).json({
-            error: false,
-            result: 'Categoria cadastrada com sucesso!'
-          })
         })
       })
+
+      return res.status(201).send()
     })
     .on('error', err => {
       res.status(400).json({ error: true, result: err })

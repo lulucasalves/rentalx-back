@@ -1,5 +1,5 @@
 const { v4: uuid } = require('uuid')
-const connection = require('../../../../config/database')
+const connection = require('../../database/database')
 
 function CreateCategoriesService(req, res) {
   const id = uuid()
@@ -13,10 +13,7 @@ function CreateCategoriesService(req, res) {
       return res.status(400).json({ error: true, result: error })
     }
 
-    return res.status(201).json({
-      error: false,
-      result: 'Categoria cadastrada com sucesso!'
-    })
+    return res.status(201).send()
   })
 }
 
