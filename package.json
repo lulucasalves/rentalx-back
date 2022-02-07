@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/infra/server.js",
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
   },
   "dependencies": {
     "@sentry/node": "^6.2.5",
@@ -33,5 +34,8 @@
     "swagger-ui-express": "^4.1.6",
     "tsyringe": "^4.4.0",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
   }
 }

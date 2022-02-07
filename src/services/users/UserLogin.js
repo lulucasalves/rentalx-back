@@ -24,9 +24,7 @@ function UserLogin(req, res) {
         expiresIn: '1d'
       })
 
-      return res
-        .status(200)
-        .json({ token: token, id: user.id })
+      return res.status(200).json({ token: token, id: user.id })
     }
 
     return res
