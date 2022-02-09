@@ -6,9 +6,9 @@ const ListCarsService = require('../../services/cars/ListCarsService')
 const carSpecificationRouter = require('./carSpecifications.routes')
 const carRouter = express.Router()
 
-carRouter.post('/', UserAuth, AdminVerification, CreateCarsService)
+carRouter.post('/', CreateCarsService)
 carRouter.get('/', ListCarsService)
 
-carRouter.use('/specification', carSpecificationRouter)
+carRouter.use('/specifications', carSpecificationRouter)
 
 module.exports = carRouter

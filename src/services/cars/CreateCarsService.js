@@ -17,7 +17,7 @@ function CreateCarsService(req, res) {
   categoryVerification(category_id, results => {
     if (results[0]) {
       const sql =
-        'INSERT INTO cars(id,name,description,daily_rate,license_plate,fine_amount,brand,category_id) VALUES (?,?,?,?,?,?,?,?)'
+        'INSERT INTO cars(id,name,description,daily_rate,license_plate,fine_amount,brand,category_id,specifications) VALUES (?,?,?,?,?,?,?,?,?)'
 
       const values = [
         id,
@@ -27,7 +27,8 @@ function CreateCarsService(req, res) {
         license_plate,
         fine_amount,
         brand,
-        category_id
+        category_id,
+        "{}"
       ]
 
       connection.query(sql, values, error => {
