@@ -1,4 +1,4 @@
-const connection = require('../../database/database')
+const connection = require('../../config/database/database')
 const verifyAvatar = require('../../utils/verifyAvatar')
 
 function UpdateUserAvatar(req, res) {

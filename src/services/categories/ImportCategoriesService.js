@@ -1,7 +1,7 @@
 const fs = require('fs')
 const csvParse = require('csv-parse')
 const { v4: uuid } = require('uuid')
-const connection = require('../../database/database')
+const connection = require('../../config/database/database')
 
 async function ImportCategoriesService(req, res) {
   const { file } = req

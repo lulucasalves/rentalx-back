@@ -1,12 +1,13 @@
 const { v4: uuid } = require('uuid')
 const connection = require('../../config/database/database')
 
-function CreateCategoriesService(req, res) {
+function CreateCarSpecificationsService(req, res) {
   const id = uuid()
-  const { name, description } = req.body
+  const { car_id, specification_id } = req.body
 
-  const sql = 'INSERT INTO categories(id,name,description) VALUES (?,?,?)'
-  const values = [id, name, description]
+  const sql =
+    'INSERT INTO specifications_cars(id,car_id,specification_id) VALUES (?,?,?)'
+  const values = [id, car_id, specification_id]
 
   connection.query(sql, values, error => {
     if (error) {
@@ -17,4 +18,4 @@ function CreateCategoriesService(req, res) {
   })
 }
 
-module.exports = CreateCategoriesService
+module.exports = CreateCarSpecificationsService

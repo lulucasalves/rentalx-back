@@ -1,5 +1,5 @@
 const { v4: uuid } = require('uuid')
-const connection = require('../../database/database')
+const connection = require('../../config/database/database')
 
 function CreateSpecificationsService(req, res) {
   const id = uuid()

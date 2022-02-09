@@ -4,22 +4,24 @@ const app = require('../../infra/server')
 describe('Create user', () => {
   it('must be able to register a user', async () => {
     const reqUser = {
-      name: 'tetaadsffaaaee',
+      name: 'tetaadsffgfdfaee',
       password: 'tste',
-      email: 'tefgcdddfrvssffdgfddsfdffgdt',
-      driver_license: '114cvvcv32fdsd99fds4234'
+      email: 'sfdqqqf',
+      driver_license: '444444'
     }
 
-    await request(app).post('/register').send(reqUser)
+    await request(app).post('/users/register').send(reqUser)
 
     const req = {
       password: reqUser.password,
       email: reqUser.email
     }
 
-    const res = await request(app).post('/login').send(req)
+    const res = await request(app).post('/users/login').send(req)
 
     const { token } = res.body
+
+    console.log(token)
 
     expect(res.statusCode).toBe(200)
   })

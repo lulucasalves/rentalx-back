@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon src/infra/server.js",
-    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
+    "test": "jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1"
   },
   "dependencies": {
     "@sentry/node": "^6.2.5",

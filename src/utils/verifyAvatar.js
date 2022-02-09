@@ -1,4 +1,4 @@
-const connection = require('../database/database')
+const connection = require('../config/database/database')
 const deleteFile = require('./file')
 
 function verifyAvatar(id) {

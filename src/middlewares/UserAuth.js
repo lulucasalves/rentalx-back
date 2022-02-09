@@ -1,5 +1,5 @@
 const { verify } = require('jsonwebtoken')
-const connection = require('../database/database')
+const connection = require('../config/database/database')
 require('dotenv/config')
 
 function UserAuth(req, res, next) {

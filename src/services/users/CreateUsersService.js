@@ -1,6 +1,6 @@
 const { v4: uuid } = require('uuid')
 const passwordhash = require('password-hash')
-const connection = require('../../database/database')
+const connection = require('../../config/database/database')
 
 function CreateUsersService(req, res) {
   const id = uuid()

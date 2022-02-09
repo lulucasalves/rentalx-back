@@ -1,4 +1,4 @@
-const connection = require('../../database/database')
+const connection = require('../../config/database/database')
 const passwordhash = require('password-hash')
 const { sign } = require('jsonwebtoken')
 require('dotenv/config')
