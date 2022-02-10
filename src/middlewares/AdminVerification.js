@@ -12,7 +12,7 @@ function AdminVerification(req, res, next) {
     } else if (error) {
       return res.status(400).json({ error: true, result: error })
     } else {
-      return res.status(400).json({ error: true, result: 'Vc n é admin' })
+      return res.status(404).json({ error: true, result: 'Vc n é admin' })
     }
   })
 }

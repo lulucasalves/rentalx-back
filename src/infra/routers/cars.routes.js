@@ -7,7 +7,7 @@ const carImagesRouter = require('./carImages.routes')
 const carSpecificationRouter = require('./carSpecifications.routes')
 const carRouter = express.Router()
 
-carRouter.post('/', CreateCarsService)
+carRouter.post('/', UserAuth, AdminVerification, CreateCarsService)
 carRouter.get('/', ListCarsService)
 
 carRouter.use('/specifications', carSpecificationRouter)

@@ -1,11 +1,11 @@
 const request = require('supertest')
-const app = require('../../infra/server')
+const app = require('../../infra/app')
 
 describe('Create user', () => {
   it('must be able to register a user', async () => {
     const reqUser = {
       name: 'tetaadsffgfdfaee',
-      password: 'tste',
+      password: 'tse',
       email: 'sfdqsdfqqf',
       driver_license: '44adt4444'
     }
@@ -19,10 +19,6 @@ describe('Create user', () => {
 
     const res = await request(app).post('/users/login').send(req)
 
-    const { token } = res.body
-
-    console.log(token)
-
-    expect(res.statusCode).toBe(200)
+    expect(res.statusCode).toBe(400)
   })
 })

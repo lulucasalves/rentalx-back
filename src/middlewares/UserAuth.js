@@ -32,7 +32,7 @@ function UserAuth(req, res, next) {
       })
     }
   } catch (err) {
-    return res.status(400).json({
+    return res.status(404).json({
       error: true,
       results: 'Token inválido'
     })

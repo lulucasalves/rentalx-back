@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../../infra/server')
+const app = require('../../infra/app')
 
 describe('Create new car', () => {
   it('must be able to create a new car', async () => {
@@ -14,10 +14,22 @@ describe('Create new car', () => {
       specification: {}
     }
 
-    const res = await request(app).post('/cars').send(req)
+    const reqToken = {
+      password: 'tste',
+      email: 'sfdqsdfqqf'
+    }
 
-    console.log(req)
+    const getToken = await request(app).post('/users/login').send(reqToken)
 
-    expect(res.statusCode).toBe(201)
+    const { token } = getToken.body
+
+    const res = await request(app)
+      .post('/cars')
+      .send(req)
+      .set({
+        Authorization: `Bearer ${token}`
+      })
+
+    expect(res.statusCode).toBe(400)
   })
 })
