@@ -3,7 +3,7 @@ const app = require('../../infra/server')
 
 describe('Create category', () => {
   it('must be able to create a new category', async () => {
-    const req = { name: 'vbfdfr', description: 'test' }
+    const req = { name: 'vbfdgfdfr', description: 'test' }
     const res = await request(app).post('/categories').send(req)
 
 

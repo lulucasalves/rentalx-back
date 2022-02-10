@@ -1,6 +1,6 @@
 const connection = require('../config/database/database')
 
-function verifyCarSpecifications(carId, callback) {
+function getCarSpecifications(carId, callback) {
   connection.query(
     'SELECT * FROM specifications_cars WHERE car_id = ?',
     [carId],
@@ -10,4 +10,4 @@ function verifyCarSpecifications(carId, callback) {
   )
 }
 
-module.exports = verifyCarSpecifications
+module.exports = getCarSpecifications

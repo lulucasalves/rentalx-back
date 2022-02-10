@@ -6,8 +6,8 @@ describe('Create user', () => {
     const reqUser = {
       name: 'tetaadsffgfdfaee',
       password: 'tste',
-      email: 'sfdqqqf',
-      driver_license: '444444'
+      email: 'sfdqsdfqqf',
+      driver_license: '44adt4444'
     }
 
     await request(app).post('/users/register').send(reqUser)

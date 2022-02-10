@@ -1,5 +1,5 @@
 const connection = require('../../config/database/database')
-const verifyAvatar = require('../../utils/verifyAvatar')
+const verifyAvatar = require('../../config/filesAdjustments/verifyAvatar')
 
 function UpdateUserAvatar(req, res) {
   const avatar = req.file.filename

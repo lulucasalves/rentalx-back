@@ -1,9 +1,9 @@
 const connection = require('../../config/database/database')
 const deleteSpecifications = require('../../utils/deleteSpecifications')
-const verifyCarSpecifications = require('../../utils/verifyCarSpecifications')
+const getCarSpecifications = require('../../utils/getCarSpecifications')
 
 function updateCarSpecifications(carId, currentId) {
-  verifyCarSpecifications(carId, results => {
+  getCarSpecifications(carId, results => {
     if (results.length > 0) {
       console.log('feito')
 
