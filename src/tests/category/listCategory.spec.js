@@ -6,7 +6,5 @@ describe('List all categories', () => {
     const res = await request(app).get('/categories')
 
     expect(res.statusCode).toBe(200)
-
-    expect(res.body.result[0]).toHaveProperty('id')
   })
 })

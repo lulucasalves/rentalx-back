@@ -5,7 +5,6 @@ const getCarSpecifications = require('../../utils/getCarSpecifications')
 function updateCarSpecifications(carId, currentId) {
   getCarSpecifications(carId, results => {
     if (results.length > 0) {
-      console.log('feito')
 
       connection.query(
         `UPDATE cars SET specifications = ? WHERE id = "${carId}"`,

@@ -1,6 +1,6 @@
 const { v4: uuid } = require('uuid')
 const connection = require('../../config/database/database')
-const compareDate = require('../../config/dates/compareDates')
+const compareHour = require('../../config/dates/compareHours')
 const rentalVerification = require('../../utils/rentalVerification')
 const updateCarAvailable = require('../../utils/updateCarAvailable')
 
@@ -16,7 +16,7 @@ function CreateRentalsService(req, res) {
 
   const values = [id, car_id, userId, start_date, expected_return_date]
 
-  const compare = compareDate(expected_return_date)
+  const compare = compareHour(expected_return_date)
 
   rentalVerification(userId, car_id, (resultUsers, resultCars) => {
     if (resultUsers.length > 0 && resultUsers[0].end_date == null) {
@@ -36,7 +36,7 @@ function CreateRentalsService(req, res) {
           return res.status(400).json({ error: true, result: error })
         }
 
-        updateCarAvailable(car_id)
+        updateCarAvailable(car_id, 0)
 
         return res.status(201).send()
       })

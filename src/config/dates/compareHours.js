@@ -1,7 +1,7 @@
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
 
-function compareDate(finalDate) {
+function compareHour(finalDate) {
   dayjs.extend(utc)
 
   const expectedReturnDate = dayjs(finalDate).utc().local().format()
@@ -12,4 +12,4 @@ function compareDate(finalDate) {
   return compare
 }
 
-module.exports = compareDate
+module.exports = compareHour
