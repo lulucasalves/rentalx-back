@@ -1,7 +1,7 @@
 const express = require('express')
 const userRouter = express.Router()
 const multer = require('multer')
-const UserAuth = require('../../middlewares/UserAuth')
+const UserAuth = require('../../midlewares/UserAuth')
 
 const CreateUsersService = require('../../services/users/CreateUsersService')
 const UpdateUserAvatar = require('../../services/users/UpdateUserAvatar')

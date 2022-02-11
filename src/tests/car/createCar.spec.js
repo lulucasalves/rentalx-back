@@ -1,15 +1,16 @@
 const request = require('supertest')
+const connection = require('../../config/database/database')
 const app = require('../../infra/app')
 
 describe('Create new car', () => {
   it('must be able to create a new car', async () => {
     const req = {
-      name: 'fwrfrf',
-      description: 'dfsdfsdfdf',
-      daily_rate: 102.22,
-      license_plate: 'btc-123',
-      fine_amount: 10.11,
-      brand: '124fndfknsf',
+      name: 'Corsa',
+      description: 'Corsa test car',
+      daily_rate: 199.99,
+      license_plate: 'test-1043',
+      fine_amount: 50.21,
+      brand: 'Test brand',
       category_id: '24b15116-9f78-4e48-ba9b-51cb54aec9c0',
       specification: {}
     }
@@ -30,6 +31,10 @@ describe('Create new car', () => {
         Authorization: `Bearer ${token}`
       })
 
-    expect(res.statusCode).toBe(400)
+    expect(res.statusCode).toBe(201)
+
+    connection.query('DELETE FROM cars WHERE license_plate = ?', [
+      req.license_plate
+    ])
   })
 })

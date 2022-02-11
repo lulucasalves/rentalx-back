@@ -2,11 +2,9 @@ const request = require('supertest')
 const connection = require('../../config/database/database')
 const app = require('../../infra/app')
 
-describe('Create new specification car', () => {
-  it('must be able to create a new specification car', async () => {
-    const req = {
-      specification_id: '3e634d34-8789-417b-9e75-311f34c3e05f'
-    }
+describe('Create a rental', () => {
+  it('Must be able to create a new rental', async () => {
+    const req = { expected_return_date: '2022-07-02' }
 
     const car_id = 'c09bc332-0c41-469d-9967-72837cbb308e'
 
@@ -20,15 +18,17 @@ describe('Create new specification car', () => {
     const { token } = getToken.body
 
     const res = await request(app)
-      .post(`/cars/specifications/${car_id}`)
+      .post(`/rentals/${car_id}`)
       .send(req)
-      .set({ Authorization: 'Bearer ' + token })
+      .set({
+        Authorization: 'Bearer ' + token
+      })
 
     expect(res.statusCode).toBe(201)
 
-    connection.query(
-      'DELETE FROM specifications_cars WHERE specification_id = ? AND car_id = ?',
-      [req.specification_id, car_id]
-    )
+    connection.query('DELETE FROM rentals WHERE car_id = ?', [car_id])
+    connection.query(`UPDATE cars SET available = ${true} WHERE id = ?`, [
+      car_id
+    ])
   })
 })

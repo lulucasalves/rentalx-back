@@ -1,8 +1,8 @@
 const express = require('express')
 const categoryRouter = express.Router()
 const multer = require('multer')
-const AdminVerification = require('../../middlewares/AdminVerification')
-const UserAuth = require('../../middlewares/UserAuth')
+const AdminVerification = require('../../midlewares/AdminVerification')
+const UserAuth = require('../../midlewares/UserAuth')
 
 const CreateCategoriesService = require('../../services/categories/CreateCategoriesService')
 const ImportCategoriesService = require('../../services/categories/ImportCategoriesService')

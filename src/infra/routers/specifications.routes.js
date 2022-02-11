@@ -1,6 +1,6 @@
 const express = require('express')
-const AdminVerification = require('../../middlewares/AdminVerification')
-const UserAuth = require('../../middlewares/UserAuth')
+const AdminVerification = require('../../midlewares/AdminVerification')
+const UserAuth = require('../../midlewares/UserAuth')
 const specificationRouter = express.Router()
 const CreateSpecificationsService = require('../../services/specifications/CreateSpecificationsService')
 

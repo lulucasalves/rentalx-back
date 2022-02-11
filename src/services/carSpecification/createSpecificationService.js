@@ -20,7 +20,7 @@ function CreateCarSpecificationsService(req, res) {
         }
 
         updateCarSpecifications(car_id, id)
-        return res.status(204).send()
+        return res.status(201).send()
       })
     } else {
       return res.status(400).json({

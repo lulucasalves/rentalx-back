@@ -7,13 +7,14 @@ const updateCarAvailable = require('../../utils/updateCarAvailable')
 function CreateRentalsService(req, res) {
   const id = uuid()
   const { userId } = req
-  const { car_id, expected_return_date } = req.body
+  const { expected_return_date } = req.body
+  const { id: car_id } = req.params
   const start_date = new Date()
 
   const sql =
-    'INSERT INTO rentals(id,car_id,user_id,start_date,expected_return_date,total) VALUES (?,?,?,?,?,?)'
+    'INSERT INTO rentals(id,car_id,user_id,start_date,expected_return_date) VALUES (?,?,?,?,?)'
 
-  const values = [id, car_id, userId, start_date, expected_return_date, total]
+  const values = [id, car_id, userId, start_date, expected_return_date]
 
   const compare = compareDate(expected_return_date)
 
