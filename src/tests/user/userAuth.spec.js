@@ -6,7 +6,7 @@ describe('Create user', () => {
   it('must be able to register a user', async () => {
     const reqUser = {
       name: 'tetaadsffgfdfaee',
-      password: 'tste',
+      password: '1234',
       email: 'sfdqsdfqqf',
       driver_license: '44adt4444'
     }
@@ -21,13 +21,9 @@ describe('Create user', () => {
     const res = await request(app).post('/users/login').send(req)
 
     const getToken = await request(app)
-      .get('/users/refresh')
+      .post('/users/refresh')
       .send({ token: res.body.refresh_token })
 
     expect(getToken.statusCode).toBe(200)
-
-    connection.query('DELETE FROM users_tokens WHERE user_id = ?', [
-      res.body.user.id
-    ])
   })
 })

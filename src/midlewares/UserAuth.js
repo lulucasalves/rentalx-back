@@ -1,6 +1,6 @@
 const { verify } = require('jsonwebtoken')
 const connection = require('../config/database/database')
-const { secret_refresh_token } = require('../config/auth/auth')
+const { secret_token } = require('../config/auth/auth')
 
 function UserAuth(req, res, next) {
   try {
@@ -9,7 +9,7 @@ function UserAuth(req, res, next) {
     if (authHeader) {
       const [, token] = authHeader.split(' ')
 
-      const { sub } = verify(token, secret_refresh_token)
+      const { sub } = verify(token, secret_token)
 
       const sql = 'SELECT id FROM users WHERE id = ?'
       const values = [sub]

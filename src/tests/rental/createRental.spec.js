@@ -9,19 +9,23 @@ describe('Create a rental', () => {
     const car_id = 'c09bc332-0c41-469d-9967-72837cbb308e'
 
     const reqToken = {
-      password: 'tste',
+      password: '1234',
       email: 'sfdqsdfqqf'
     }
 
     const getToken = await request(app).post('/users/login').send(reqToken)
 
-    const { token } = getToken.body
+    const token = getToken.body.refresh_token
+
+    const refreshToken = await request(app)
+      .post('/users/refresh')
+      .send({ token: token })
 
     const res = await request(app)
       .post(`/rentals/${car_id}`)
       .send(req)
       .set({
-        Authorization: 'Bearer ' + token
+        Authorization: 'Bearer ' + refreshToken.body
       })
 
     expect(res.statusCode).toBe(201)

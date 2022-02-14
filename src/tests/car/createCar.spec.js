@@ -16,19 +16,23 @@ describe('Create new car', () => {
     }
 
     const reqToken = {
-      password: 'tste',
+      password: '1234',
       email: 'sfdqsdfqqf'
     }
 
     const getToken = await request(app).post('/users/login').send(reqToken)
 
-    const { token } = getToken.body
+    const token = getToken.body.refresh_token
+
+    const refreshToken = await request(app)
+      .post('/users/refresh')
+      .send({ token })
 
     const res = await request(app)
       .post('/cars')
       .send(req)
       .set({
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${refreshToken.body}`
       })
 
     expect(res.statusCode).toBe(201)
