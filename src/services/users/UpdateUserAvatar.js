@@ -15,7 +15,7 @@ function UpdateUserAvatar(req, res) {
       return res.status(400).json({ error: true, results: error })
     }
 
-    return res.status(204).send()
+    return res.status(201).send()
   })
 }
 

@@ -1,7 +1,15 @@
 const connection = require('../../config/database/database')
 const passwordhash = require('password-hash')
 const { sign } = require('jsonwebtoken')
-require('dotenv/config')
+const {
+  secret_token,
+  expires_in_token,
+  secret_refresh_token,
+  expires_in_refresh_token,
+  refresh_token_expires_date
+} = require('../../config/auth/auth')
+const addDays = require('../../config/dates/addDays')
+const refreshTokenFunc = require('../../config/auth/refreshToken')
 
 function UserLogin(req, res) {
   const { email, password } = req.body
@@ -19,12 +27,25 @@ function UserLogin(req, res) {
     const passwordPass = passwordhash.verify(password, user.password)
 
     if (results && passwordPass && email === user.email) {
-      const token = sign({}, process.env.AUTH, {
+      const token = sign({}, secret_token, {
         subject: user.id,
-        expiresIn: '1d'
+        expiresIn: expires_in_token
       })
 
-      return res.status(200).json({ token: token, id: user.id })
+      const refresh_token_id = sign({ email }, secret_refresh_token, {
+        subject: user.id,
+        expiresIn: expires_in_refresh_token
+      })
+
+      const refresh_token_expires = addDays(refresh_token_expires_date)
+
+      refreshTokenFunc(refresh_token_expires, refresh_token_id, user.id)
+
+      return res.status(200).json({
+        token: token,
+        user: { id: user.id, email: email },
+        refresh_token: refresh_token_id
+      })
     }
 
     return res

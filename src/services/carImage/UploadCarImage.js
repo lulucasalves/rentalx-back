@@ -24,7 +24,7 @@ function UploadImagesService(req, res) {
             return res.status(400).json({ error: true, result: error })
           }
 
-          return res.status(204).send()
+          return res.status(201).send()
         })
       } else {
         verifyCarImages(car_id)
@@ -44,7 +44,7 @@ function UploadImagesService(req, res) {
               return res.status(400).json({ error: true, result: error })
             }
 
-            return res.status(204).send()
+            return res.status(201).send()
           })
         })
       }

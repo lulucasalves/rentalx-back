@@ -5,6 +5,7 @@ const UserAuth = require('../../midlewares/UserAuth')
 
 const CreateUsersService = require('../../services/users/CreateUsersService')
 const UpdateUserAvatar = require('../../services/users/UpdateUserAvatar')
+const VerifyRefreshToken = require('../../services/users/VerifyRefreshToken')
 const UserLogin = require('../../services/users/UserLogin')
 
 const upload = require('../../config/upload')
@@ -13,6 +14,7 @@ const uploadAvatar = multer(upload('./tmp/avatar'))
 
 userRouter.post('/register', CreateUsersService)
 userRouter.post('/login', UserLogin)
+userRouter.post('/refresh', VerifyRefreshToken)
 userRouter.patch(
   '/avatar',
   UserAuth,
