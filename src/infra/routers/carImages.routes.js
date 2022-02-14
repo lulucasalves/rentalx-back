@@ -3,8 +3,8 @@ const UploadImagesService = require('../../services/carImage/UploadCarImage')
 const carImagesRouter = express.Router()
 const multer = require('multer')
 const upload = require('../../config/upload')
-const UserAuth = require('../../midlewares/UserAuth')
-const AdminVerification = require('../../midlewares/AdminVerification')
+const UserAuth = require('../../middlewares/UserAuth')
+const AdminVerification = require('../../middlewares/AdminVerification')
 
 const uploadImages = multer(upload('./tmp/cars'))
 

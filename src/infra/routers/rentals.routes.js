@@ -1,5 +1,5 @@
 const express = require('express')
-const UserAuth = require('../../midlewares/UserAuth')
+const UserAuth = require('../../middlewares/UserAuth')
 const CreateRentalsService = require('../../services/rental/CreateRentalsService')
 const ListRentalUser = require('../../services/rental/ListRentalUser')
 const ReturnRentalsService = require('../../services/rental/ReturnRentalService')

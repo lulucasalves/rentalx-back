@@ -41,7 +41,7 @@ function VerifyRefreshToken(req, res) {
 
     refreshTokenFunc(getRefreshTokenDate, refresh_token, results[0].user_id)
 
-    return res.status(200).json({ token: newToken })
+    return res.status(200).json({ newToken })
   })
 }
 
