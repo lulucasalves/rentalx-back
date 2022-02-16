@@ -22,7 +22,7 @@ describe('Create new car', () => {
 
     const getToken = await request(app).post('/users/login').send(reqToken)
 
-    const token = getToken.body.refresh_token
+    const token = getToken.body.token
 
     const refreshToken = await request(app)
       .post('/users/refresh')

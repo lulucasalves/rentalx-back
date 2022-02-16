@@ -1,5 +1,5 @@
 const connection = require('../database/database')
-const deleteFile = require('./file')
+const deleteLocalStorage = require('../storage/DeleteLocalStorage')
 
 function verifyAvatar(id) {
   connection.query(
@@ -7,7 +7,7 @@ function verifyAvatar(id) {
     [id],
     async (err, results) => {
       if (results[0].avatar) {
-        await deleteFile(`./tmp/avatar/${results[0].avatar}`)
+        await deleteLocalStorage(results[0].avatar, 'avatar')
       }
     }
   )

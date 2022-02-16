@@ -7,4 +7,4 @@ coverage
 dist
 ormconfig.json
 package-lock.json
-docker-compose.yml
+yarn-lock

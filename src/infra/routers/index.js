@@ -1,4 +1,5 @@
 const express = require('express')
+const upload = require('../../config/upload')
 const router = express.Router()
 
 const carRouter = require('./cars.routes')
@@ -14,5 +15,7 @@ router.use('/users', userRouter)
 router.use('/cars', carRouter)
 router.use('/rentals', rentalRouter)
 router.use('/password', passwordRouter)
+router.use('/avatar', express.static(`${upload.tmpFolder}/avatar`))
+router.use('/cars', express.static(`${upload.tmpFolder}/cars`))
 
 module.exports = router

@@ -9,8 +9,9 @@ const VerifyRefreshToken = require('../../services/users/VerifyRefreshToken')
 const UserLogin = require('../../services/users/UserLogin')
 
 const upload = require('../../config/upload')
+const ProfileUser = require('../../services/users/ProfileUser')
 
-const uploadAvatar = multer(upload('./tmp/avatar'))
+const uploadAvatar = multer(upload)
 
 userRouter.post('/register', CreateUsersService)
 userRouter.post('/login', UserLogin)
@@ -21,5 +22,6 @@ userRouter.patch(
   uploadAvatar.single('avatar'),
   UpdateUserAvatar
 )
+userRouter.get('/profile', UserAuth, ProfileUser)
 
 module.exports = userRouter

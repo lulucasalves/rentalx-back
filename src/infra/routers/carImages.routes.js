@@ -6,7 +6,7 @@ const upload = require('../../config/upload')
 const UserAuth = require('../../middlewares/UserAuth')
 const AdminVerification = require('../../middlewares/AdminVerification')
 
-const uploadImages = multer(upload('./tmp/cars'))
+const uploadImages = multer(upload)
 
 carImagesRouter.post(
   '/:id',

@@ -1,11 +1,8 @@
 const request = require('supertest')
-const connection = require('../../config/database/database')
 const app = require('../../infra/app')
 
-describe('Create category', () => {
-  it('must be able to create a new category', async () => {
-    const req = { name: 'test', description: 'new category test' }
-
+describe('List user', () => {
+  it('must send user info', async () => {
     const reqToken = {
       password: '1234',
       email: 'sfdqsdfqqf'
@@ -16,14 +13,13 @@ describe('Create category', () => {
     const token = getToken.body.token
 
     const res = await request(app)
-      .post('/categories')
-      .send(req)
+      .get('/users/profile')
       .set({
         Authorization: 'Bearer ' + token
       })
 
-    expect(res.statusCode).toBe(201)
+    console.log(res.body)
 
-    connection.query('DELETE FROM categories WHERE name = ?', [req.name])
+    expect(res.statusCode).toBe(200)
   })
 })

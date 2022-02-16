@@ -2,9 +2,12 @@ const connection = require('../../config/database/database')
 const { v4: uuid } = require('uuid')
 const refreshTokenFunc = require('../../config/auth/refreshToken')
 const addHour = require('../../config/dates/addHour')
-const NewEmail = require('./NewEmail')
 const { resolve } = require('path')
 require('dotenv/config')
+
+const nodemailer = require('nodemailer')
+const handlebars = require('handlebars')
+const fs = require('fs')
 
 function SendEmail(req, res) {
   const { email } = req.body
@@ -39,9 +42,35 @@ function SendEmail(req, res) {
       link: `${process.env.FORGOT_MAIL_URL}${token}`
     }
 
-    await NewEmail(email, 'Recuperação de senha', variables, templatePath)
+    nodemailer
+      .createTestAccount()
+      .then(async account => {
+        const transporter = nodemailer.createTransport({
+          host: account.smtp.host,
+          port: account.smtp.port,
+          secure: account.smtp.secure,
+          auth: { user: account.user, pass: account.pass }
+        })
 
-    res.status(200).send()
+        const templateFileContent = fs
+          .readFileSync(templatePath)
+          .toString('utf-8')
+
+        const templateParse = handlebars.compile(templateFileContent)
+
+        const templateHTML = templateParse(variables)
+
+        const message = await transporter
+          .sendMail({
+            to: 'lucas.alves.supus@outlook.com',
+            from: 'Rentx <noreplay@rentx.com.br>',
+            subject: 'Recuperação de senha',
+            html: templateHTML
+          })
+          .then(info => res.status(200).send(info))
+          .catch(err => res.status(400).send(err))
+      })
+      .catch(err => res.status(400).send(err))
   })
 }
 
