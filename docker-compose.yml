@@ -3,7 +3,7 @@ version: "3.9"
 services:
   database:
     image: mysql
-    container_name: database
+    container_name: database_ignite
     restart: always
     ports:
       - 3306:3306
@@ -11,9 +11,11 @@ services:
       - USER_DB=
       - SECRET=
       - DATABASE=rentalx
+      - PORT_DATABASE=
+      - MYSQL_ROOT_PASSWORD=
     volumes:
       - /var/lib/mysql
-    network_mode: host
+
   app:
     build: .
     image: lulucasalves/rentalx
