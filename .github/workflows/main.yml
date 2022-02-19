@@ -19,9 +19,9 @@ jobs:
           node-version: 14.x
         
       - name: Install Dependencies
-        run: yarn
+        run: yarn instaçç
         
-      - uses: appleboy/scp-action@master
+      - uses: appleboy/scp-action@main
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
