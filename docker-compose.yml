@@ -11,7 +11,7 @@ services:
       - USER_DB=
       - SECRET=
       - DATABASE=rentalx
-      - PORT_DATABASE=
+      - PORT_DATABASE=9999
       - MYSQL_ROOT_PASSWORD=
     volumes:
       - /var/lib/mysql
