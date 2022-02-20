@@ -6,19 +6,22 @@ services:
     container_name: database_ignite
     restart: always
     ports:
-      - 3306:3306
+      - 6843:6843
     environment:
       - USER_DB=
-      - SECRET=
       - DATABASE=rentalx
-      - PORT_DATABASE=9999
+      - PORT_DATABASE=6843
       - MYSQL_ROOT_PASSWORD=
     volumes:
       - /var/lib/mysql
 
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+
   app:
     build: .
-    image: lulucasalves/rentalx
     container_name: rentalx
     ports:
       - 5000:5000
